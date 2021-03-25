@@ -18,17 +18,17 @@ scenarios:
            content: "Test"
           capture:
            json: "$.id"
-           as: "idTask"
-      - log: "current ID is {{idTask}}"
+           as: "taskID"
+      - log: "current ID is {{taskID}}"
       - get:
-          url: "/task/{{idTask}}"
+          url: "/task/{{taskID}}"
       - post:
-          url: "/tasks/{{idTask}}"
+          url: "/tasks/{{taskID}}"
           json:
            content: "Test-Edit"
       - post:
-          url: "/tasks/{{idTask}}/close"
+          url: "/tasks/{{taskID}}/close"
       - post:
-          url: "/tasks/{{idTask}}/reopen" 
+          url: "/tasks/{{taskID}}/reopen" 
       - delete:
-          url: "/task/{{idTask}}"
+          url: "/task/{{taskID}}"
