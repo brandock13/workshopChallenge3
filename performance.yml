@@ -10,8 +10,10 @@ config:
      Content-type: application/json  
 scenarios:
   - flow:
+    #Get active tasks 
       - get:
-          url: "/task"
+          url: "/tasks"
+    #Create task 
       - post:
           url: "/tasks"
           json:
@@ -20,15 +22,20 @@ scenarios:
            json: "$.id"
            as: "taskID"
       - log: "current ID is {{taskID}}"
+    #Get active task 
       - get:
-          url: "/task/{{taskID}}"
+          url: "/tasks/{{taskID}}"
+    #Update task
       - post:
           url: "/tasks/{{taskID}}"
           json:
            content: "Test-Edit"
+    #Check task
       - post:
           url: "/tasks/{{taskID}}/close"
+    #Reopen task
       - post:
           url: "/tasks/{{taskID}}/reopen" 
+    #Delete task 
       - delete:
-          url: "/task/{{taskID}}"
+          url: "/tasks/{{taskID}}"
